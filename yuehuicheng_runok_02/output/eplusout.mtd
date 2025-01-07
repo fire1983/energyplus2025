@@ -1,0 +1,118 @@
+
+ Meters for 14,B1F_PUBLIC:Zone Air System Sensible Heating Energy [J]
+  OnMeter=EnergyTransfer:Facility [J]
+  OnMeter=EnergyTransfer:Building [J]
+  OnMeter=EnergyTransfer:Zone:B1F_PUBLIC [J]
+  OnMeter=Heating:EnergyTransfer [J]
+  OnMeter=Heating:EnergyTransfer:Zone:B1F_PUBLIC [J]
+  OnMeter=General:Heating:EnergyTransfer [J]
+  OnMeter=General:Heating:EnergyTransfer:Zone:B1F_PUBLIC [J]
+
+ Meters for 99,B1F_PUBLIC:Zone Air System Sensible Cooling Energy [J]
+  OnMeter=EnergyTransfer:Facility [J]
+  OnMeter=EnergyTransfer:Building [J]
+  OnMeter=EnergyTransfer:Zone:B1F_PUBLIC [J]
+  OnMeter=Cooling:EnergyTransfer [J]
+  OnMeter=Cooling:EnergyTransfer:Zone:B1F_PUBLIC [J]
+  OnMeter=General:Cooling:EnergyTransfer [J]
+  OnMeter=General:Cooling:EnergyTransfer:Zone:B1F_PUBLIC [J]
+
+ Meters for 151,B1F_RETAIL:Zone Air System Sensible Heating Energy [J]
+  OnMeter=EnergyTransfer:Facility [J]
+  OnMeter=EnergyTransfer:Building [J]
+  OnMeter=EnergyTransfer:Zone:B1F_RETAIL [J]
+  OnMeter=Heating:EnergyTransfer [J]
+  OnMeter=Heating:EnergyTransfer:Zone:B1F_RETAIL [J]
+  OnMeter=General:Heating:EnergyTransfer [J]
+  OnMeter=General:Heating:EnergyTransfer:Zone:B1F_RETAIL [J]
+
+ Meters for 188,B1F_RETAIL:Zone Air System Sensible Cooling Energy [J]
+  OnMeter=EnergyTransfer:Facility [J]
+  OnMeter=EnergyTransfer:Building [J]
+  OnMeter=EnergyTransfer:Zone:B1F_RETAIL [J]
+  OnMeter=Cooling:EnergyTransfer [J]
+  OnMeter=Cooling:EnergyTransfer:Zone:B1F_RETAIL [J]
+  OnMeter=General:Cooling:EnergyTransfer [J]
+  OnMeter=General:Cooling:EnergyTransfer:Zone:B1F_RETAIL [J]
+
+ Meters for 215,Site:Environmental Impact Total N2O Emissions Carbon Equivalent Mass [kg]
+  OnMeter=Carbon Equivalent:Facility [kg]
+  OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
+
+ Meters for 240,Site:Environmental Impact Total CH4 Emissions Carbon Equivalent Mass [kg]
+  OnMeter=Carbon Equivalent:Facility [kg]
+  OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
+
+ Meters for 241,Site:Environmental Impact Total CO2 Emissions Carbon Equivalent Mass [kg]
+  OnMeter=Carbon Equivalent:Facility [kg]
+  OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
+
+ For Meter=EnergyTransfer:Facility [J], ResourceType=EnergyTransfer, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=EnergyTransfer:Building [J], ResourceType=EnergyTransfer, Group=Building, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=EnergyTransfer:Zone:B1F_PUBLIC [J], ResourceType=EnergyTransfer, Group=Zone, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+
+ For Meter=Heating:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=Heating, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+
+ For Meter=Heating:EnergyTransfer:Zone:B1F_PUBLIC [J], ResourceType=EnergyTransfer, EndUse=Heating, Group=Zone, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+
+ For Meter=General:Heating:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=Heating, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+
+ For Meter=General:Heating:EnergyTransfer:Zone:B1F_PUBLIC [J], ResourceType=EnergyTransfer, EndUse=Heating, Group=Zone, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Heating Energy
+
+ For Meter=Cooling:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=Cooling, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=Cooling:EnergyTransfer:Zone:B1F_PUBLIC [J], ResourceType=EnergyTransfer, EndUse=Cooling, Group=Zone, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+
+ For Meter=General:Cooling:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=Cooling, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=General:Cooling:EnergyTransfer:Zone:B1F_PUBLIC [J], ResourceType=EnergyTransfer, EndUse=Cooling, Group=Zone, contents are:
+  B1F_PUBLIC:Zone Air System Sensible Cooling Energy
+
+ For Meter=EnergyTransfer:Zone:B1F_RETAIL [J], ResourceType=EnergyTransfer, Group=Zone, contents are:
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=Heating:EnergyTransfer:Zone:B1F_RETAIL [J], ResourceType=EnergyTransfer, EndUse=Heating, Group=Zone, contents are:
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+
+ For Meter=General:Heating:EnergyTransfer:Zone:B1F_RETAIL [J], ResourceType=EnergyTransfer, EndUse=Heating, Group=Zone, contents are:
+  B1F_RETAIL:Zone Air System Sensible Heating Energy
+
+ For Meter=Cooling:EnergyTransfer:Zone:B1F_RETAIL [J], ResourceType=EnergyTransfer, EndUse=Cooling, Group=Zone, contents are:
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=General:Cooling:EnergyTransfer:Zone:B1F_RETAIL [J], ResourceType=EnergyTransfer, EndUse=Cooling, Group=Zone, contents are:
+  B1F_RETAIL:Zone Air System Sensible Cooling Energy
+
+ For Meter=Carbon Equivalent:Facility [kg], ResourceType=Carbon Equivalent, contents are:
+  Site:Environmental Impact Total N2O Emissions Carbon Equivalent Mass
+  Site:Environmental Impact Total CH4 Emissions Carbon Equivalent Mass
+  Site:Environmental Impact Total CO2 Emissions Carbon Equivalent Mass
+
+ For Meter=CarbonEquivalentEmissions:Carbon Equivalent [kg], ResourceType=Carbon Equivalent, EndUse=CarbonEquivalentEmissions, contents are:
+  Site:Environmental Impact Total N2O Emissions Carbon Equivalent Mass
+  Site:Environmental Impact Total CH4 Emissions Carbon Equivalent Mass
+  Site:Environmental Impact Total CO2 Emissions Carbon Equivalent Mass

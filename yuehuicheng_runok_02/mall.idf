@@ -1,0 +1,758 @@
+!-Generator IDFEditor 1.50
+!-Option SortedOrder
+
+  Version,24.2;
+
+  Building,
+    Shopping Mall,            !- Name
+    0,                       !- North Axis {deg}
+    City,                    !- Terrain
+    0.04,                    !- Loads Convergence Tolerance Value
+    0.04,                    !- Temperature Convergence Tolerance Value {deltaC}
+    FullExterior,            !- Solar Distribution
+    25,                      !- Maximum Number of Warmup Days
+    6;                       !- Minimum Number of Warmup Days
+
+  GlobalGeometryRules,
+    UpperLeftCorner,         !- Starting Vertex Position
+    CounterClockWise,        !- Vertex Entry Direction
+    World;                   !- Coordinate System
+
+  RunPeriod,
+    Annual Run,              !- Name
+    1,                       !- Begin Month
+    1,                       !- Begin Day of Month
+    2024,                    !- Begin Year
+    12,                      !- End Month
+    31,                      !- End Day of Month
+    2024,                    !- End Year
+    Monday,                  !- Day of Week for Start Day
+    Yes,                     !- Use Weather File Holidays and Special Days
+    Yes,                     !- Use Weather File Daylight Saving Period
+    No,                      !- Apply Weekend Holiday Rule
+    Yes,                     !- Use Weather File Rain Indicators
+    Yes;                     !- Use Weather File Snow Indicators
+
+  ScheduleTypeLimits,
+    Any Number;              !- Name
+
+  ScheduleTypeLimits,
+    Fraction,                !- Name
+    0.0,                     !- Lower Limit Value
+    1.0,                     !- Upper Limit Value
+    CONTINUOUS;              !- Numeric Type
+
+  ScheduleTypeLimits,
+    Temperature,             !- Name
+    -60,                     !- Lower Limit Value
+    200,                     !- Upper Limit Value
+    CONTINUOUS;              !- Numeric Type
+
+  ScheduleTypeLimits,
+    On/Off,                  !- Name
+    0,                       !- Lower Limit Value
+    1,                       !- Upper Limit Value
+    DISCRETE;                !- Numeric Type
+
+  SimulationControl,
+    Yes,                     !- Do Zone Sizing Calculation
+    Yes,                     !- Do System Sizing Calculation
+    Yes,                     !- Do Plant Sizing Calculation
+    No,                      !- Run Simulation for Sizing Periods
+    Yes,                     !- Run Simulation for Weather File Run Periods
+    No,                      !- Do HVAC Sizing Simulation for Sizing Periods
+    1;                       !- Maximum Number of HVAC Sizing Simulation Passes
+
+  Site:Location,
+    Guangzhou,               !- Name
+    23.13,                   !- Latitude {deg}
+    113.32,                  !- Longitude {deg}
+    8.00,                    !- Time Zone {hr}
+    23.00;                   !- Elevation {m}
+
+  ! 定义材料
+  Material,
+    CONCRETE,                  !- Name
+    MediumRough,              !- Roughness
+    0.1524,                   !- Thickness {m}
+    2.31,                     !- Conductivity {W/m-K}
+    2322,                     !- Density {kg/m3}
+    832,                      !- Specific Heat {J/kg-K}
+    0.9,                      !- Thermal Absorptance
+    0.7,                      !- Solar Absorptance
+    0.7;                      !- Visible Absorptance
+
+  Material,
+    INSULATION,               !- Name
+    Rough,                    !- Roughness
+    0.0762,                   !- Thickness {m}
+    0.049,                    !- Conductivity {W/m-K}
+    265,                      !- Density {kg/m3}
+    836.8,                    !- Specific Heat {J/kg-K}
+    0.9,                      !- Thermal Absorptance
+    0.7,                      !- Solar Absorptance
+    0.7;                      !- Visible Absorptance
+
+  Construction,
+    FLOOR,                    !- Name
+    CONCRETE;                 !- Outside Layer
+
+  Construction,
+    EXTWALL,                  !- Name
+    CONCRETE,                 !- Outside Layer
+    INSULATION;               !- Layer 2
+
+  ! 定义第一层（地下一层）
+  Zone,
+    B1F_Public,             !- Name
+    0,                      !- Direction of Relative North {deg}
+    0,                      !- X Origin {m}
+    0,                      !- Y Origin {m}
+    -4.5,                   !- Z Origin {m}
+    1,                      !- Type
+    1,                      !- Multiplier
+    4.5,                    !- Ceiling Height {m}
+    7548.67;                !- Volume {m3}
+
+  Zone,
+    B1F_Retail,             !- Name
+    0,                      !- Direction of Relative North {deg}
+    0,                      !- X Origin {m}
+    0,                      !- Y Origin {m}
+    -4.5,                   !- Z Origin {m}
+    1,                      !- Type
+    1,                      !- Multiplier
+    4.5,                    !- Ceiling Height {m}
+    33951.33;               !- Volume {m3}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Floor_1,        !- Name
+    FLOOR,                     !- Surface Type
+    FLOOR,                    !- Construction Name
+    B1F_PUBLIC,               !- Zone Name
+    ,                         !- Space Name
+    Ground,                   !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    NoSun,                    !- Sun Exposure
+    NoWind,                   !- Wind Exposure
+    0.0,                      !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0.0,0.0,0.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,0.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,0.0,           !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,0.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Ceiling_1,      !- Name
+    CEILING,                   !- Surface Type
+    FLOOR,                     !- Construction Name
+    B1F_PUBLIC,               !- Zone Name
+    ,                         !- Space Name
+    Outdoors,                 !- Outside Boundary Condition
+    ,                         !- Outside Boundary Condition Object
+    SunExposed,               !- Sun Exposure
+    WindExposed,              !- Wind Exposure
+    0.5,                      !- View Factor to Ground
+    4,                        !- Number of Vertices
+    0.0,0.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,3.0,            !- X,Y,Z ==> Vertex 2 {m} 
+    50.0,30.0,3.0,           !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,3.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_1_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,0.0,3.0,              !- X,Y,Z ==> Vertex 1 {m}
+    0.0,0.0,0.0,              !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,0.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,3.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_1_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,0.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,0.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,3.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_1_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,0.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,0.0,0.0,             !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,3.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_1_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,0.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    50.0,0.0,0.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,0.0,0.0,              !- X,Y,Z ==> Vertex 3 {m}
+    0.0,0.0,3.0;              !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_2_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,0.0,6.0,              !- X,Y,Z ==> Vertex 1 {m}
+    0.0,0.0,3.0,              !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,6.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_2_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,6.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_2_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,0.0,3.0,             !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,6.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_2_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,0.0,6.0,             !- X,Y,Z ==> Vertex 1 {m}
+    50.0,0.0,3.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,0.0,3.0,              !- X,Y,Z ==> Vertex 3 {m}
+    0.0,0.0,6.0;              !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_3_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,0.0,9.0,              !- X,Y,Z ==> Vertex 1 {m}
+    0.0,0.0,6.0,              !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,9.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_3_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,9.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_3_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,0.0,6.0,             !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,9.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_3_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,0.0,9.0,             !- X,Y,Z ==> Vertex 1 {m}
+    50.0,0.0,6.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,0.0,6.0,              !- X,Y,Z ==> Vertex 3 {m}
+    0.0,0.0,9.0;              !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_4_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,0.0,12.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,0.0,9.0,              !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,12.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_4_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,12.0,            !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,12.0;           !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_4_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,12.0,           !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,0.0,9.0,             !- X,Y,Z ==> Vertex 3 {m}
+    50.0,0.0,12.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Public_Wall_4_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_PUBLIC,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,0.0,12.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,0.0,9.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,0.0,9.0,              !- X,Y,Z ==> Vertex 3 {m}
+    0.0,0.0,12.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Floor_1,        !- Name
+    FLOOR,                     !- Surface Type
+    FLOOR,                     !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Ground,                    !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    NoSun,                     !- Sun Exposure
+    NoWind,                    !- Wind Exposure
+    0.0,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,0.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,0.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,0.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,0.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Ceiling_1,      !- Name
+    CEILING,                   !- Surface Type
+    FLOOR,                     !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,3.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,3.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,3.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_1_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,0.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,60.0,0.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,60.0,3.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_1_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,60.0,3.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,0.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,0.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,60.0,3.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_1_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,60.0,3.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,60.0,0.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,0.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,3.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_1_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,0.0,            !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,0.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,3.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_2_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,60.0,3.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,60.0,6.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_2_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,60.0,6.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,3.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,3.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,60.0,6.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_2_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,60.0,6.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,60.0,3.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,6.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_2_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,3.0,            !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,3.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,6.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_3_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,60.0,6.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,60.0,9.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_3_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,60.0,9.0,             !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,6.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,6.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,60.0,9.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_3_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,60.0,9.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,60.0,6.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,9.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_3_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,6.0,            !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,6.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,9.0;             !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_4_1,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,30.0,12.0,            !- X,Y,Z ==> Vertex 1 {m}
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 2 {m}
+    0.0,60.0,9.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,60.0,12.0;            !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_4_2,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    0.0,60.0,12.0,            !- X,Y,Z ==> Vertex 1 {m}
+    0.0,60.0,9.0,             !- X,Y,Z ==> Vertex 2 {m}
+    50.0,60.0,9.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,60.0,12.0;           !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_4_3,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,60.0,12.0,           !- X,Y,Z ==> Vertex 1 {m}
+    50.0,60.0,9.0,            !- X,Y,Z ==> Vertex 2 {m}
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 3 {m}
+    50.0,30.0,12.0;           !- X,Y,Z ==> Vertex 4 {m}
+
+  BuildingSurface:Detailed,
+    B1F_Retail_Wall_4_4,       !- Name
+    WALL,                      !- Surface Type
+    EXTWALL,                   !- Construction Name
+    B1F_RETAIL,                !- Zone Name
+    ,                          !- Space Name
+    Outdoors,                  !- Outside Boundary Condition
+    ,                          !- Outside Boundary Condition Object
+    SunExposed,                !- Sun Exposure
+    WindExposed,               !- Wind Exposure
+    0.5,                       !- View Factor to Ground
+    4,                         !- Number of Vertices
+    50.0,30.0,12.0,           !- X,Y,Z ==> Vertex 1 {m}
+    50.0,30.0,9.0,            !- X,Y,Z ==> Vertex 2 {m}
+    0.0,30.0,9.0,             !- X,Y,Z ==> Vertex 3 {m}
+    0.0,30.0,12.0;            !- X,Y,Z ==> Vertex 4 {m} 
+
+Output:Variable,*,Zone Mean Air Temperature,Hourly;
+Output:Variable,*,Zone Air System Sensible Heating Energy,Hourly;
+Output:Variable,*,Zone Air System Sensible Cooling Energy,Hourly;
+Output:Variable,*,Zone Air System Sensible Heating Rate,Hourly;
+Output:Variable,*,Zone Air System Sensible Cooling Rate,Hourly;
+Output:Variable,*,Zone People Occupant Count,Hourly;
+Output:Variable,*,Zone Air Relative Humidity,Hourly;
+Output:Variable,*,Zone Windows Total Transmitted Solar Radiation Rate,Hourly;
+Output:Variable,*,Zone Air Heat Balance Surface Convection Rate,Hourly;
+Output:Variable,*,Zone Air Heat Balance Air Energy Storage Rate,Hourly;
+
+Output:Meter:MeterFileOnly,Electricity:Facility,monthly;
+Output:Meter:MeterFileOnly,Gas:Facility,monthly;
+Output:Meter:MeterFileOnly,DistrictCooling:Facility,monthly;
+Output:Meter:MeterFileOnly,DistrictHeating:Facility,monthly;
+Output:Meter:MeterFileOnly,Water:Facility,monthly;
+
+Output:Table:SummaryReports,
+    AllSummary;                !- Report 1 Name 

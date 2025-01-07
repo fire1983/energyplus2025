@@ -1,0 +1,7 @@
+1.用中文交互
+2.每次回答问题前，修改代码前，修改idf文件前，都要阅读task和ExampleFiles。
+3.ExampleFiles中IDF文件参考ExampleFiles文件夹下的.idf文件，python程序编写参考ExampleFiles文件夹下的.py文件。
+4.每次修改idf文件之前，先阅读ExampleFiles文件夹下的.idf文件，如文件中有相关内容，格式直接复制过去，具体数据根据task要求调整。
+5.采用agent模式时，如果停留时间超过1分钟，就跳出来寻找问题，并给出解决方案，然后继续执行。
+6.energyplus在github上的地址：https://github.com/NREL/EnergyPlus/tree/develop；每次重新开始任务之前，先去阅读。
+
